@@ -932,6 +932,59 @@
         background: var(--red);
       }
 
+      .topbar-tools {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .music-toggle {
+        min-height: 38px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        padding: 7px 11px;
+        border: 1px solid rgba(126,32,64,.18);
+        border-radius: 999px;
+        color: var(--red);
+        background: rgba(255,255,255,.82);
+        box-shadow: 0 3px 12px rgba(48,25,28,.05);
+        font: 500 12px var(--font);
+        white-space: nowrap;
+        cursor: pointer;
+        transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+      }
+
+      .music-toggle:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(48,25,28,.1); }
+      .music-toggle:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+      .music-toggle[aria-pressed="true"] {
+        border-color: rgba(211,170,105,.7);
+        color: #fff8ee;
+        background: var(--red-dark);
+      }
+
+      .music-toggle svg { width: 16px; height: 16px; flex: 0 0 auto; }
+      .music-toggle[aria-pressed="true"] svg { animation: music-note 2.4s ease-in-out infinite; }
+
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      @keyframes music-note {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-2px); }
+      }
+
       .hero {
         min-height: min(820px, calc(100svh - 76px));
         grid-template-columns: minmax(0, 1.08fr) minmax(300px, .92fr);
@@ -1288,6 +1341,21 @@
         -webkit-backdrop-filter: blur(16px);
       }
 
+      @media (max-width: 1020px) {
+        .topbar {
+          flex-wrap: wrap;
+          justify-content: center;
+          row-gap: 10px;
+        }
+        .brand { margin-right: auto; }
+        .topbar-tools { margin-left: auto; }
+        .nav {
+          order: 3;
+          flex-basis: 100%;
+          justify-content: center;
+        }
+      }
+
       @media (max-width: 900px) {
         .hero {
           min-height: auto;
@@ -1323,9 +1391,14 @@
           border-radius: 17px;
         }
         .topbar {
+          flex-direction: column;
           gap: 9px;
           padding: 11px 10px 12px;
         }
+        .brand, .topbar-tools { margin-right: 0; margin-left: 0; }
+        .nav { order: 0; flex-basis: auto; }
+        .topbar-tools { gap: 6px; }
+        .music-toggle { min-height: 34px; padding: 6px 9px; font-size: 11px; }
         .brand { font-size: 18px; }
         .brand::before { width: 30px; height: 30px; }
         .nav { width: 100%; justify-content: center; gap: 2px; padding: 3px; }
@@ -1373,6 +1446,8 @@
         .topbar::after { transition: none; }
         .couple-media img { transition: none; }
         .hero-action { transition: none; }
+        .music-toggle { transition: none; }
+        .music-toggle[aria-pressed="true"] svg { animation: none; }
       }
     </style>
   </head>
@@ -1387,9 +1462,18 @@
           <a href="#poribar" data-i18n="navFamilies">পরিবার</a>
           <a href="#tottho" data-i18n="navDetails">বিস্তারিত</a>
         </nav>
-        <div class="language-switch" role="group" aria-label="ভাষা নির্বাচন করুন" data-i18n-aria="chooseLanguage">
-          <button type="button" data-language="bn" aria-pressed="true">বাংলা</button>
-          <button type="button" data-language="en" aria-pressed="false">English</button>
+        <div class="topbar-tools">
+          <div class="language-switch" role="group" aria-label="ভাষা নির্বাচন করুন" data-i18n-aria="chooseLanguage">
+            <button type="button" data-language="bn" aria-pressed="true">বাংলা</button>
+            <button type="button" data-language="en" aria-pressed="false">English</button>
+          </div>
+          <button class="music-toggle" id="music-toggle" type="button" aria-label="মৃদু সুর চালু করুন" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+            </svg>
+            <span id="music-label">মৃদু সুর চালু করুন</span>
+          </button>
+          <span class="visually-hidden" id="music-status" role="status" aria-live="polite"></span>
         </div>
       </header>
 
@@ -1657,6 +1741,124 @@
         nextPage: "Next page"
       };
       let currentLanguage = "bn";
+      const musicToggleButton = document.querySelector("#music-toggle");
+      const musicLabel = document.querySelector("#music-label");
+      const musicStatus = document.querySelector("#music-status");
+      const musicCopy = {
+        bn: {
+          play: "মৃদু সুর চালু করুন",
+          stop: "সুর বন্ধ করুন",
+          playing: "মৃদু সুর বাজছে।",
+          stopped: "মৃদু সুর বন্ধ করা হয়েছে।",
+          error: "আপনার ব্রাউজারে সুর চালু করা যায়নি।"
+        },
+        en: {
+          play: "Play gentle music",
+          stop: "Turn music off",
+          playing: "Gentle music is playing.",
+          stopped: "Gentle music is off.",
+          error: "Your browser could not start the music."
+        }
+      };
+      const musicNotes = [261.63, 329.63, 392, 440, 523.25, 440, 392, 329.63];
+      let invitationAudioContext = null;
+      let invitationMusicGain = null;
+      let invitationMusicPlaying = false;
+      let invitationMusicTimer = 0;
+      let musicNoteIndex = 0;
+
+      const updateMusicControl = () => {
+        const label = musicCopy[currentLanguage][invitationMusicPlaying ? "stop" : "play"];
+        musicLabel.textContent = label;
+        musicToggleButton.setAttribute("aria-label", label);
+        musicToggleButton.setAttribute("aria-pressed", String(invitationMusicPlaying));
+      };
+
+      const playMusicNote = () => {
+        if (!invitationMusicPlaying || !invitationAudioContext || !invitationMusicGain) return;
+        const context = invitationAudioContext;
+        const startAt = context.currentTime;
+        const frequency = musicNotes[musicNoteIndex % musicNotes.length];
+        musicNoteIndex += 1;
+
+        const oscillator = context.createOscillator();
+        const envelope = context.createGain();
+        oscillator.type = "sine";
+        oscillator.frequency.setValueAtTime(frequency, startAt);
+        envelope.gain.setValueAtTime(0.0001, startAt);
+        envelope.gain.exponentialRampToValueAtTime(0.2, startAt + 0.1);
+        envelope.gain.exponentialRampToValueAtTime(0.0001, startAt + 1.25);
+        oscillator.connect(envelope);
+        envelope.connect(invitationMusicGain);
+        oscillator.start(startAt);
+        oscillator.stop(startAt + 1.3);
+
+        const overtone = context.createOscillator();
+        const overtoneEnvelope = context.createGain();
+        overtone.type = "sine";
+        overtone.frequency.setValueAtTime(frequency * 2, startAt);
+        overtoneEnvelope.gain.setValueAtTime(0.0001, startAt);
+        overtoneEnvelope.gain.exponentialRampToValueAtTime(0.035, startAt + 0.08);
+        overtoneEnvelope.gain.exponentialRampToValueAtTime(0.0001, startAt + 0.75);
+        overtone.connect(overtoneEnvelope);
+        overtoneEnvelope.connect(invitationMusicGain);
+        overtone.start(startAt);
+        overtone.stop(startAt + 0.8);
+
+        invitationMusicTimer = window.setTimeout(playMusicNote, 1650);
+      };
+
+      const startInvitationMusic = async () => {
+        const AudioContextConstructor = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextConstructor) throw new Error("Web Audio is not supported in this browser.");
+
+        if (!invitationAudioContext || invitationAudioContext.state === "closed") {
+          invitationAudioContext = new AudioContextConstructor();
+          invitationMusicGain = invitationAudioContext.createGain();
+          invitationMusicGain.gain.value = 0;
+          invitationMusicGain.connect(invitationAudioContext.destination);
+
+          [[130.81, 0.065], [196, 0.04]].forEach(([frequency, volume]) => {
+            const drone = invitationAudioContext.createOscillator();
+            const droneGain = invitationAudioContext.createGain();
+            drone.type = "sine";
+            drone.frequency.value = frequency;
+            droneGain.gain.value = volume;
+            drone.connect(droneGain);
+            droneGain.connect(invitationMusicGain);
+            drone.start();
+          });
+        }
+
+        window.clearTimeout(invitationMusicTimer);
+        await invitationAudioContext.resume();
+        const now = invitationAudioContext.currentTime;
+        invitationMusicGain.gain.cancelScheduledValues(now);
+        invitationMusicGain.gain.setTargetAtTime(0.18, now, 0.6);
+        invitationMusicPlaying = true;
+        musicStatus.textContent = musicCopy[currentLanguage].playing;
+        updateMusicControl();
+        playMusicNote();
+      };
+
+      const stopInvitationMusic = () => {
+        invitationMusicPlaying = false;
+        window.clearTimeout(invitationMusicTimer);
+        if (invitationAudioContext && invitationMusicGain) {
+          const context = invitationAudioContext;
+          const now = context.currentTime;
+          invitationMusicGain.gain.cancelScheduledValues(now);
+          invitationMusicGain.gain.setTargetAtTime(0, now, 0.18);
+          invitationMusicTimer = window.setTimeout(() => {
+            if (!invitationMusicPlaying && invitationAudioContext === context) {
+              context.suspend().catch((error) => console.error("Could not pause invitation music.", error));
+            }
+          }, 1600);
+        }
+        musicStatus.textContent = musicCopy[currentLanguage].stopped;
+        updateMusicControl();
+      };
+
       const pages = [
         { id: "shuru" },
         { id: "nimantran" },
@@ -1795,6 +1997,8 @@
         });
         updatePageControls(currentPageId);
         updateCountdown();
+        updateMusicControl();
+        if (invitationMusicPlaying) musicStatus.textContent = musicCopy[currentLanguage].playing;
       };
 
       const showPage = (pageId, addHistory = true, animate = true) => {
@@ -1843,6 +2047,20 @@
 
       document.querySelectorAll("[data-language]").forEach((button) => {
         button.addEventListener("click", () => setLanguage(button.dataset.language));
+      });
+      musicToggleButton.addEventListener("click", async () => {
+        if (invitationMusicPlaying) {
+          stopInvitationMusic();
+          return;
+        }
+        try {
+          await startInvitationMusic();
+        } catch (error) {
+          invitationMusicPlaying = false;
+          updateMusicControl();
+          musicStatus.textContent = musicCopy[currentLanguage].error;
+          console.error("Could not start invitation music.", error);
+        }
       });
       shareInvitationButton.addEventListener("click", async () => {
         const invitationUrl = new URL(window.location.href);
