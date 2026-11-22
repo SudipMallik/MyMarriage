@@ -3,8 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#fbf4e8">
+    <meta name="theme-color" content="#381522">
     <meta name="description" content="সুদীপ ও মেঘার শুভ পরিণয়ে আপনাকে সাদর আমন্ত্রণ।">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Megha And Sudip’s Wedding Invitation">
+    <meta property="og:title" content="Megha And Sudip’s Wedding Invitation">
+    <meta property="og:description" content="You are warmly invited to celebrate the Bengali wedding of Sudip and Megha.">
+    <meta property="og:url" content="https://sudipmallik.github.io/MyMarriage/">
+    <meta property="og:image" content="https://sudipmallik.github.io/MyMarriage/bengali-bride-groom.png">
+    <meta property="og:image:alt" content="Sudip and Megha in traditional Bengali wedding attire">
+    <meta name="twitter:card" content="summary_large_image">
     <title>সুদীপ ও মেঘার শুভ পরিণয়</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -798,9 +806,576 @@
         .reveal { opacity: 1; transform: none; }
         .firework-burst { display: none; }
       }
+
+      :root {
+        --paper: #f5ecde;
+        --cream: #fffaf2;
+        --ink: #2f1e20;
+        --muted: #715c56;
+        --red: #7e2040;
+        --red-dark: #4a142b;
+        --gold: #d3aa69;
+        --green: #35564b;
+        --page-progress: 20%;
+      }
+
+      body {
+        min-height: 100vh;
+        background:
+          radial-gradient(ellipse at 10% 12%, rgba(211,170,105,.17), transparent 28rem),
+          radial-gradient(ellipse at 96% 78%, rgba(126,32,64,.08), transparent 34rem),
+          var(--paper);
+      }
+
+      .page {
+        width: min(100% - 30px, 1500px);
+        margin: 15px auto;
+        border: 1px solid rgba(211,170,105,.75);
+        border-radius: 22px;
+        outline-color: rgba(211,170,105,.38);
+        background: var(--cream);
+        box-shadow: 0 28px 90px rgba(48,25,28,.12);
+      }
+
+      .skip-link {
+        position: fixed;
+        z-index: 30;
+        top: 12px;
+        left: 12px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        color: white;
+        background: var(--red-dark);
+        text-decoration: none;
+        transform: translateY(calc(-100% - 20px));
+        transition: transform .2s ease;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+        outline: 2px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      .topbar {
+        min-height: 76px;
+        border-bottom-color: rgba(126,32,64,.12);
+        background: rgba(255,250,242,.88);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+      }
+
+      .topbar::after {
+        position: absolute;
+        right: 0;
+        bottom: -1px;
+        left: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--gold), var(--red) var(--page-progress), transparent var(--page-progress));
+        content: "";
+        transition: background .4s ease;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 21px;
+      }
+
+      .brand::before {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border: 1px solid rgba(211,170,105,.8);
+        border-radius: 50%;
+        color: var(--cream);
+        background: var(--red);
+        content: "✿";
+        font: 16px/1 var(--font);
+        box-shadow: 0 5px 14px rgba(126,32,64,.18);
+      }
+
+      .nav {
+        gap: 5px;
+        padding: 5px;
+        border: 1px solid rgba(126,32,64,.1);
+        border-radius: 999px;
+        background: rgba(126,32,64,.035);
+      }
+
+      .nav a {
+        padding: 8px 13px;
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 13px;
+        transition: color .2s ease, background .2s ease, box-shadow .2s ease;
+      }
+
+      .nav a::after { display: none; }
+      .nav a:hover, .nav a:focus-visible { color: var(--red); }
+      .nav a[aria-current="page"] {
+        color: var(--cream);
+        background: var(--red);
+        box-shadow: 0 4px 12px rgba(126,32,64,.2);
+      }
+
+      .language-switch {
+        border-color: rgba(126,32,64,.16);
+        background: rgba(255,255,255,.82);
+        box-shadow: 0 3px 12px rgba(48,25,28,.05);
+      }
+
+      .language-switch button[aria-pressed="true"] {
+        color: white;
+        background: var(--red);
+      }
+
+      .hero {
+        min-height: min(820px, calc(100svh - 76px));
+        grid-template-columns: minmax(0, 1.08fr) minmax(300px, .92fr);
+        gap: clamp(30px, 5vw, 78px);
+        padding: clamp(70px, 8vw, 126px) clamp(34px, 8vw, 120px);
+        isolation: isolate;
+        color: #fff8ee;
+        background:
+          radial-gradient(ellipse at 74% 48%, rgba(211,170,105,.22), transparent 29%),
+          radial-gradient(ellipse at 0% 100%, rgba(157,50,73,.36), transparent 38%),
+          linear-gradient(128deg, #28101d 0%, #4b182c 58%, #2b101f 100%);
+      }
+
+      .hero::before {
+        position: absolute;
+        z-index: -1;
+        top: 50%;
+        right: 7%;
+        width: min(52vw, 690px);
+        aspect-ratio: 1;
+        border: 1px solid rgba(211,170,105,.22);
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 18px rgba(211,170,105,.035),
+          0 0 0 48px rgba(211,170,105,.025),
+          inset 0 0 0 18px rgba(211,170,105,.035),
+          inset 0 0 0 48px rgba(211,170,105,.025);
+        content: "";
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+
+      .hero::after {
+        z-index: -1;
+        height: 100%;
+        background:
+          linear-gradient(0deg, rgba(20,7,15,.34), transparent 44%),
+          repeating-linear-gradient(135deg, transparent 0 37px, rgba(255,255,255,.012) 38px 39px);
+      }
+
+      .hero-copy {
+        max-width: 640px;
+        text-align: left;
+      }
+
+      .small-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 22px;
+        color: #f0cf91;
+        letter-spacing: .12em;
+      }
+
+      .small-label::before {
+        width: 28px;
+        height: 1px;
+        background: var(--gold);
+        content: "";
+      }
+
+      .invocation { color: #e9c98e; }
+
+      h1 {
+        color: #fff8ee;
+        font-size: clamp(66px, 9.2vw, 118px);
+        text-wrap: balance;
+        text-shadow: 0 10px 38px rgba(0,0,0,.2);
+      }
+
+      h1 .amp {
+        color: #e0b76f;
+        text-shadow: 0 0 28px rgba(211,170,105,.25);
+      }
+
+      .hero-subtitle { color: #f0cf91; }
+      .hero-copyline { margin-left: 0; color: rgba(255,248,238,.77); }
+
+      .date-ribbon {
+        flex-wrap: wrap;
+        border-color: rgba(230,197,137,.52);
+        color: #fff3df;
+        background: rgba(255,255,255,.075);
+        box-shadow: inset 0 1px rgba(255,255,255,.08);
+        backdrop-filter: blur(8px);
+      }
+
+      .date-ribbon span { color: #e6c589; }
+
+      .couple-scene {
+        width: min(100%, 495px);
+        filter: drop-shadow(0 26px 40px rgba(0,0,0,.28));
+      }
+
+      .couple-scene::before {
+        inset: 5% 5% 1%;
+        border: 1px solid rgba(237,204,143,.82);
+        border-radius: 48% 48% 18px 18px;
+        transform: rotate(3deg);
+      }
+
+      .couple-media {
+        border: 7px solid #fff8ee;
+        border-radius: 48% 48% 18px 18px;
+        box-shadow:
+          0 22px 50px rgba(0,0,0,.28),
+          0 0 0 1px rgba(211,170,105,.85),
+          0 0 36px rgba(211,170,105,.16);
+      }
+
+      .couple-media img { transition: transform .9s cubic-bezier(.2,.7,.2,1); }
+      .couple-media:hover img { transform: scale(1.035); }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      .hero-action {
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        padding: 11px 18px;
+        border: 1px solid rgba(237,204,143,.56);
+        border-radius: 999px;
+        color: #fff8ee;
+        background: rgba(255,255,255,.075);
+        font: 600 14px var(--font);
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+      }
+
+      .hero-action:hover, .hero-action:focus-visible {
+        transform: translateY(-2px);
+        background: rgba(255,255,255,.14);
+        box-shadow: 0 10px 24px rgba(0,0,0,.16);
+      }
+
+      .hero-action:focus-visible {
+        outline: 2px solid #f0cf91;
+        outline-offset: 3px;
+      }
+
+      .hero-action--primary {
+        border-color: #e2bd7a;
+        color: #351321;
+        background: linear-gradient(135deg, #f1d59d, #d4a75d);
+        box-shadow: 0 8px 22px rgba(0,0,0,.18);
+      }
+
+      .hero-action--primary:hover, .hero-action--primary:focus-visible {
+        background: linear-gradient(135deg, #f6dfb0, #e0b76f);
+      }
+
+      .hero-action svg { width: 17px; height: 17px; flex: 0 0 auto; }
+
+      .share-feedback {
+        min-height: 24px;
+        margin: 9px 0 0;
+        color: #f0cf91;
+        font-size: 13px;
+      }
+
+      .share-feedback a {
+        color: #fff1d2;
+        text-underline-offset: 3px;
+        overflow-wrap: anywhere;
+      }
+
+      .section {
+        padding: clamp(72px, 8vw, 112px) clamp(25px, 9vw, 126px);
+      }
+
+      .intro {
+        background:
+          radial-gradient(ellipse at 50% 0%, rgba(211,170,105,.14), transparent 52%),
+          linear-gradient(180deg, #fffaf2, #fbf3e7);
+      }
+
+      .section-label {
+        letter-spacing: .07em;
+        text-transform: uppercase;
+      }
+
+      .section h2 { color: #321c24; text-wrap: balance; }
+      .section .bengali-accent { color: var(--red); }
+      .intro-copy { color: #68534e; }
+
+      .alpana {
+        width: 104px;
+        height: 104px;
+        filter: drop-shadow(0 8px 14px rgba(126,32,64,.12));
+      }
+
+      .events {
+        background:
+          radial-gradient(ellipse at 50% 45%, rgba(211,170,105,.18), transparent 68%),
+          #f5ecde;
+      }
+
+      .event-grid {
+        gap: 17px;
+        border: 0;
+      }
+
+      .event {
+        min-height: 278px;
+        overflow: hidden;
+        border: 1px solid rgba(211,170,105,.56);
+        border-radius: 22px;
+        background: linear-gradient(155deg, rgba(255,250,242,.98), rgba(255,255,255,.76));
+        box-shadow: 0 12px 32px rgba(59,34,32,.07);
+      }
+
+      .event::before {
+        position: absolute;
+        top: 13px;
+        right: 17px;
+        color: rgba(126,32,64,.26);
+        content: "✦";
+        font-size: 18px;
+      }
+
+      .event:hover {
+        border-color: rgba(126,32,64,.4);
+        background: linear-gradient(155deg, #fffaf2, #fff);
+        box-shadow: 0 20px 38px rgba(59,34,32,.12);
+      }
+
+      .event + .event { border-left: 1px solid rgba(211,170,105,.56); }
+      .event-number { color: var(--red); font-size: 76px; }
+      .event-month { color: #aa7c38; }
+      .event-name { color: #321c24; }
+
+      .countdown {
+        width: min(100%, 700px);
+        border: 1px solid rgba(231,198,144,.68);
+        border-radius: 24px;
+        color: #fff8ee;
+        background:
+          radial-gradient(ellipse at 95% 0%, rgba(211,170,105,.2), transparent 38%),
+          linear-gradient(135deg, #341321, #542034);
+        box-shadow: 0 20px 44px rgba(59,34,32,.16);
+      }
+
+      .countdown-label { color: rgba(255,248,238,.72); }
+      .countdown-event { color: #f0cf91; }
+      .countdown-clock { gap: 9px; }
+
+      .countdown-unit {
+        border: 1px solid rgba(237,204,143,.18);
+        border-radius: 15px;
+        background: rgba(255,255,255,.055);
+      }
+
+      .countdown-unit:first-child { border-left: 1px solid rgba(237,204,143,.18); }
+      .countdown-value { color: #fff8ee; font-size: 34px; font-variant-numeric: tabular-nums; }
+      .countdown-unit small { color: #e7c68e; }
+
+      .family {
+        background:
+          radial-gradient(ellipse at 12% 18%, rgba(211,170,105,.17), transparent 34%),
+          radial-gradient(ellipse at 89% 87%, rgba(211,170,105,.13), transparent 31%),
+          linear-gradient(135deg, #28101d, #43182b 58%, #2b111e);
+      }
+
+      .family-card {
+        border-radius: 20px;
+        background: rgba(255,250,242,.065);
+        box-shadow: 0 18px 42px rgba(0,0,0,.13), inset 0 1px rgba(255,255,255,.055);
+        backdrop-filter: blur(9px);
+      }
+
+      .family-member { padding: 13px 0; }
+
+      .details {
+        background:
+          radial-gradient(ellipse at 50% 0%, rgba(211,170,105,.13), transparent 55%),
+          #fffaf2;
+      }
+
+      .details-list {
+        width: min(100%, 1120px);
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 15px;
+        border: 0;
+      }
+
+      .detail {
+        min-height: 205px;
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+        padding: 23px 20px;
+        border: 1px solid rgba(211,170,105,.46);
+        border-radius: 18px;
+        background: rgba(255,255,255,.72);
+        box-shadow: 0 10px 28px rgba(59,34,32,.06);
+        text-align: left;
+      }
+
+      .detail dt {
+        color: var(--red);
+        font: 600 18px/1.5 var(--display);
+      }
+
+      .detail dd { color: #5d4945; }
+
+      .map-link {
+        margin-top: 12px;
+        padding: 7px 11px;
+        border: 1px solid rgba(126,32,64,.2);
+        border-radius: 999px;
+        color: var(--red);
+        background: rgba(126,32,64,.04);
+        text-decoration: none;
+        transition: color .2s ease, background .2s ease;
+      }
+
+      .map-link:hover, .map-link:focus-visible {
+        color: white;
+        background: var(--red);
+      }
+
+      .closing {
+        background:
+          radial-gradient(ellipse at 50% 100%, rgba(211,170,105,.2), transparent 61%),
+          linear-gradient(130deg, #2a101e, #4a182d);
+      }
+
+      .closing-words { color: #fff2dd; }
+      .closing-names { color: #e7c68e; }
+
+      .page-controls {
+        position: relative;
+        bottom: auto;
+        z-index: 8;
+        width: min(calc(100% - 36px), 680px);
+        margin: 20px auto;
+        border: 1px solid rgba(211,170,105,.48);
+        border-radius: 999px;
+        background: rgba(255,250,242,.9);
+        box-shadow: 0 10px 32px rgba(48,25,28,.12);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+      }
+
+      @media (max-width: 900px) {
+        .hero {
+          min-height: auto;
+          gap: 36px;
+          padding: 70px clamp(24px, 6vw, 68px);
+        }
+        .details-list { grid-template-columns: 1fr; max-width: 700px; }
+        .detail { min-height: auto; }
+      }
+
+      @media (max-width: 760px) {
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 36px;
+          padding: 66px 28px 58px;
+        }
+        .hero-copy { max-width: 680px; text-align: center; }
+        .small-label { justify-content: center; }
+        .hero-copyline { margin-right: auto; margin-left: auto; }
+        .hero-actions { justify-content: center; }
+        .share-feedback { text-align: center; }
+        .couple-scene { width: min(78%, 390px); }
+        .hero::before { top: 65%; right: 50%; width: min(90vw, 560px); transform: translate(50%, -50%); }
+        .event-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+        .event + .event { border-left: 1px solid rgba(211,170,105,.56); }
+        .event { min-height: 248px; padding: 23px 12px; }
+      }
+
+      @media (max-width: 600px) {
+        .page {
+          width: calc(100% - 14px);
+          margin: 7px auto;
+          border-radius: 17px;
+        }
+        .topbar {
+          gap: 9px;
+          padding: 11px 10px 12px;
+        }
+        .brand { font-size: 18px; }
+        .brand::before { width: 30px; height: 30px; }
+        .nav { width: 100%; justify-content: center; gap: 2px; padding: 3px; }
+        .nav a { padding: 7px 9px; font-size: 12px; }
+        .language-switch button { padding: 5px 9px; }
+        .hero { padding: 54px 19px 42px; }
+        .hero-copy { text-align: center; }
+        h1 { font-size: clamp(54px, 14vw, 82px); }
+        .small-label { font-size: 12px; }
+        .invocation { font-size: 20px; }
+        .hero-subtitle { font-size: 19px; }
+        .hero-copyline { font-size: 14px; line-height: 1.85; }
+        .date-ribbon { gap: 7px; justify-content: center; font-size: 12px; }
+        .hero-actions { flex-direction: column; align-items: stretch; margin: 23px auto 0; max-width: 300px; }
+        .hero-action { width: 100%; }
+        .couple-scene { width: min(83%, 340px); }
+        .section { padding: 62px 17px; }
+        .section h2 { font-size: clamp(31px, 9vw, 43px); }
+        .section .bengali-accent { font-size: 19px; }
+        .event-grid { grid-template-columns: 1fr; gap: 11px; }
+        .event, .event + .event {
+          min-height: auto;
+          padding: 22px 12px;
+          border: 1px solid rgba(211,170,105,.56);
+        }
+        .event-number { font-size: 55px; }
+        .event-month { margin: 4px 0 8px; }
+        .event-name { font-size: 21px; }
+        .countdown { margin-top: 28px; padding: 20px 10px 15px; }
+        .countdown-clock { gap: 4px; }
+        .countdown-value { font-size: 25px; }
+        .countdown-unit { padding: 9px 3px 7px; }
+        .family-grid { grid-template-columns: 1fr; gap: 24px; }
+        .family-card { padding: 25px 19px 18px; }
+        .family-member { font-size: 14px; }
+        .detail { padding: 19px 16px; }
+        .page-controls { width: calc(100% - 24px); gap: 6px; padding: 10px 8px; }
+        .page-controls button { min-height: 38px; padding: 7px 10px; font-size: 12px; }
+        .page-indicator { font-size: 11px; }
+        .closing { padding: 56px 17px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .skip-link { transition: none; }
+        .topbar::after { transition: none; }
+        .couple-media img { transition: none; }
+        .hero-action { transition: none; }
+      }
     </style>
   </head>
   <body>
+    <a class="skip-link" href="#main-content" data-i18n="skipToContent">মূল বিষয়বস্তুতে যান</a>
     <div class="page">
       <header class="topbar">
         <a class="brand" href="#shuru" aria-label="শুরুতে ফিরে যান" data-i18n="brand" data-i18n-aria="backToTop">শুভ পরিণয়</a>
@@ -816,7 +1391,7 @@
         </div>
       </header>
 
-      <main>
+      <main id="main-content">
         <section class="hero page-view" id="shuru" aria-labelledby="main-title">
           <canvas class="fireworks" aria-hidden="true"></canvas>
           <span class="firework-burst firework-burst--gold" aria-hidden="true"></span>
@@ -835,6 +1410,20 @@
             <div class="date-ribbon" aria-label="২৭ জানুয়ারি থেকে ১৪ ফেব্রুয়ারি" data-i18n-aria="dateRange">
               <span>✿</span> <span data-i18n="dateJanuary">২৭ জানুয়ারি</span> <span>•</span> <span data-i18n="dateWedding">১২ ফেব্রুয়ারি</span> <span>•</span> <span data-i18n="dateReception">১৪ ফেব্রুয়ারি</span> <span>✿</span>
             </div>
+            <div class="hero-actions">
+              <a class="hero-action hero-action--primary" href="#utsab">
+                <span data-i18n="exploreSchedule">অনুষ্ঠানের সূচি দেখুন</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+              <button class="hero-action" type="button" id="share-invitation">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                  <path d="m8.7 10.7 6.6-4.4m-6.6 7 6.6 4.4"/>
+                </svg>
+                <span data-i18n="shareInvitation">নিমন্ত্রণ শেয়ার করুন</span>
+              </button>
+            </div>
+            <p class="share-feedback" id="share-feedback" role="status" aria-live="polite"></p>
           </div>
 
           <div class="couple-scene">
@@ -987,6 +1576,9 @@
         navFamilies: "Families",
         navDetails: "Venues",
         chooseLanguage: "Choose language",
+        skipToContent: "Skip to invitation",
+        exploreSchedule: "Explore the celebrations",
+        shareInvitation: "Share invitation",
         heroLabel: "With joy, we invite you to celebrate",
         invocation: "With the blessings of Lord Ganesha",
         groomFirstName: "Sudip",
@@ -1075,6 +1667,8 @@
       const previousPageButton = document.querySelector("#page-previous");
       const nextPageButton = document.querySelector("#page-next");
       const transitionOverlay = document.querySelector(".page-transition");
+      const shareInvitationButton = document.querySelector("#share-invitation");
+      const shareFeedback = document.querySelector("#share-feedback");
       let currentPageId = "shuru";
       let transitionTimer = 0;
 
@@ -1122,6 +1716,10 @@
         pageIndicator.textContent = currentLanguage === "bn"
           ? `পৃষ্ঠা ${bengaliDigits(pageIndex + 1)} / ${bengaliDigits(pages.length)}`
           : `Page ${pageIndex + 1} of ${pages.length}`;
+        document.documentElement.style.setProperty(
+          "--page-progress",
+          `${((pageIndex + 1) / pages.length) * 100}%`
+        );
         previousPageButton.disabled = pageIndex === 0;
         nextPageButton.disabled = pageIndex === pages.length - 1;
       };
@@ -1164,7 +1762,7 @@
       const setLanguage = (language) => {
         currentLanguage = language;
         document.documentElement.lang = language;
-        document.title = language === "en" ? "Sudip & Megha | Wedding Invitation" : "সুদীপ ও মেঘার শুভ পরিণয়";
+        document.title = language === "en" ? "Megha And Sudip’s Wedding Invitation" : "সুদীপ ও মেঘার শুভ পরিণয়";
         document.querySelector('meta[name="description"]').content = language === "en"
           ? "You are warmly invited to celebrate the wedding of Sudip and Megha."
           : "সুদীপ ও মেঘার শুভ পরিণয়ে আপনাকে সাদর আমন্ত্রণ।";
@@ -1244,7 +1842,47 @@
       document.querySelectorAll("[data-language]").forEach((button) => {
         button.addEventListener("click", () => setLanguage(button.dataset.language));
       });
-      document.querySelectorAll(".brand, .nav a").forEach((link) => {
+      shareInvitationButton.addEventListener("click", async () => {
+        const invitationUrl = new URL(window.location.href);
+        invitationUrl.hash = "";
+        const shareText = currentLanguage === "bn"
+          ? "সুদীপ ও মেঘার বিয়ের নিমন্ত্রণ"
+          : "You are warmly invited to Sudip and Megha's wedding.";
+        const showManualLink = (message) => {
+          const link = document.createElement("a");
+          link.href = invitationUrl.href;
+          link.textContent = invitationUrl.href;
+          shareFeedback.replaceChildren(document.createTextNode(`${message} `), link);
+        };
+
+        try {
+          if (navigator.share) {
+            await navigator.share({ title: document.title, text: shareText, url: invitationUrl.href });
+            shareFeedback.textContent = currentLanguage === "bn"
+              ? "নিমন্ত্রণটি শেয়ার করা হয়েছে।"
+              : "Invitation shared.";
+            return;
+          }
+
+          if (!navigator.clipboard?.writeText) {
+            showManualLink(currentLanguage === "bn"
+              ? "এই লিংকটি কপি করে অতিথিদের পাঠান:"
+              : "Copy this link to share the invitation:");
+            return;
+          }
+
+          await navigator.clipboard.writeText(invitationUrl.href);
+          shareFeedback.textContent = currentLanguage === "bn"
+            ? "নিমন্ত্রণের লিংক কপি হয়েছে—এখন অতিথিদের পাঠিয়ে দিন।"
+            : "Invitation link copied. You can now send it to your guests.";
+        } catch (error) {
+          if (error instanceof DOMException && error.name === "AbortError") return;
+          showManualLink(currentLanguage === "bn"
+            ? "শেয়ার করা যায়নি। এই লিংকটি কপি করুন:"
+            : "Sharing failed. Copy this link instead:");
+        }
+      });
+      document.querySelectorAll(".brand, .nav a, .hero-actions a").forEach((link) => {
         link.addEventListener("click", (event) => {
           const pageId = link.getAttribute("href").slice(1);
           if (!pages.some((page) => page.id === pageId)) return;
@@ -1265,6 +1903,25 @@
         const pageId = pages.some((page) => page.id === requestedPageId) ? requestedPageId : "shuru";
         showPage(pageId, false);
       });
+      let swipeStart = null;
+      document.addEventListener("pointerdown", (event) => {
+        if (event.pointerType !== "touch" || event.target.closest("a, button, input, textarea, select")) {
+          swipeStart = null;
+          return;
+        }
+        swipeStart = { x: event.clientX, y: event.clientY };
+      }, { passive: true });
+      document.addEventListener("pointerup", (event) => {
+        if (!swipeStart) return;
+        const deltaX = event.clientX - swipeStart.x;
+        const deltaY = event.clientY - swipeStart.y;
+        swipeStart = null;
+        if (Math.abs(deltaX) < 70 || Math.abs(deltaX) < Math.abs(deltaY) * 1.4) return;
+        const pageIndex = pages.findIndex((page) => page.id === currentPageId);
+        const targetPage = deltaX < 0 ? pages[pageIndex + 1] : pages[pageIndex - 1];
+        if (targetPage) showPage(targetPage.id);
+      }, { passive: true });
+      document.addEventListener("pointercancel", () => { swipeStart = null; }, { passive: true });
       motionPreference.addEventListener("change", (event) => {
         if (event.matches) {
           window.clearTimeout(transitionTimer);
