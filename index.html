@@ -1934,7 +1934,7 @@
       let particles = [];
       let swipeStart = null;
 
-      audio.volume = .2;
+      audio.volume = .35;
 
       function toBengaliDigits(value) {
         return String(value).replace(/\d/g, (digit) => "০১২৩৪৫৬৭৮৯"[Number(digit)]);
@@ -2130,7 +2130,7 @@
 
       function fadeMusicIn() {
         const startedAt = performance.now();
-        const targetVolume = .2;
+        const targetVolume = .35;
         function fade(now) {
           if (audio.paused) return;
           const progress = Math.min(1, (now - startedAt) / 750);
