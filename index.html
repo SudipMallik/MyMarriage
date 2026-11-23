@@ -679,8 +679,7 @@
       line-height: 1.9;
     }
 
-    .hero-cta-row,
-    .button-row {
+    .hero-cta-row {
       display: flex;
       align-items: center;
       gap: .75rem;
@@ -1120,30 +1119,6 @@
       line-height: 1.9;
     }
 
-    .share-url-row {
-      display: flex;
-      max-width: 680px;
-      gap: .6rem;
-      margin: 1.2rem auto 0;
-      flex-wrap: wrap;
-    }
-
-    .share-url {
-      min-width: min(100%, 250px);
-      flex: 1 1 260px;
-      min-height: 46px;
-      padding: .65rem .9rem;
-      border: 1px solid rgba(241, 213, 157, .42);
-      border-radius: 12px;
-      background: rgba(255, 250, 242, .1);
-      color: var(--ivory);
-    }
-
-    .share-url::selection {
-      background: var(--gold);
-      color: var(--wine);
-    }
-
     .page-footer {
       display: flex;
       width: min(100% - 2rem, 1240px);
@@ -1449,7 +1424,7 @@
             <button class="nav-link" type="button" data-go="invitation" data-i18n="navInvitation">নিমন্ত্রণ</button>
             <button class="nav-link" type="button" data-go="events" data-i18n="navEvents">অনুষ্ঠান</button>
             <button class="nav-link" type="button" data-go="family" data-i18n="navFamily">পরিবার</button>
-            <button class="nav-link" type="button" data-go="share" data-i18n="navShare">শুভেচ্ছা</button>
+            <button class="nav-link" type="button" data-go="gratitude" data-i18n="navGratitude">আশীর্বাদ</button>
           </nav>
           <div class="topbar-actions">
             <button class="music-toggle" id="music-toggle" type="button" aria-pressed="false" data-i18n-aria="playMusic">
@@ -1679,20 +1654,12 @@
           </div>
         </section>
 
-        <section class="page-view" id="page-share" data-page="share" aria-labelledby="share-title" hidden>
+        <section class="page-view" id="page-gratitude" data-page="gratitude" aria-labelledby="gratitude-title" hidden>
           <div class="gratitude-panel">
             <div class="gratitude-content">
-              <p class="eyebrow gold-kicker" data-i18n="shareEyebrow">আপনিও থাকুন আমাদের আনন্দে</p>
-              <h2 class="ornate-title" id="share-title" data-i18n="shareTitle">স্নেহ ও আশীর্বাদে</h2>
-              <p class="gratitude-copy" data-i18n="shareCopy">আপনার উপস্থিতি আমাদের এই শুভদিনকে আরও স্মরণীয় করে তুলবে। নিমন্ত্রণটি প্রিয়জনদের সঙ্গে ভাগ করে নিন।</p>
-              <div class="button-row" style="justify-content:center">
-                <button class="primary-button" id="share-button" type="button"><span data-i18n="shareInvitation">নিমন্ত্রণ শেয়ার করুন</span><span aria-hidden="true">↗</span></button>
-                <button class="secondary-button" id="copy-button" type="button"><span data-i18n="copyLink">লিংক কপি করুন</span></button>
-              </div>
-              <div class="share-url-row">
-                <label class="sr-only" for="share-url" data-i18n="linkLabel">নিমন্ত্রণের লিংক</label>
-                <input class="share-url" id="share-url" type="url" readonly>
-              </div>
+              <p class="eyebrow gold-kicker" data-i18n="gratitudeEyebrow">আপনিও থাকুন আমাদের আনন্দে</p>
+              <h2 class="ornate-title" id="gratitude-title" data-i18n="gratitudeTitle">স্নেহ ও আশীর্বাদে</h2>
+              <p class="gratitude-copy" data-i18n="gratitudeCopy">আপনার উপস্থিতি আমাদের এই শুভদিনকে আরও স্মরণীয় করে তুলবে। আমাদের আনন্দে আপনার উপস্থিতির জন্য অধীর অপেক্ষায় রইলাম।</p>
             </div>
           </div>
         </section>
@@ -1735,7 +1702,7 @@
           navInvitation: "নিমন্ত্রণ",
           navEvents: "অনুষ্ঠান",
           navFamily: "পরিবার",
-          navShare: "শুভেচ্ছা",
+          navGratitude: "আশীর্বাদ",
           playMusic: "বিবাহের গান চালু করুন",
           pauseMusic: "বিবাহের গান থামান",
           music: "সঙ্গীত",
@@ -1794,19 +1761,14 @@
           brideFather: "বাবুল চন্দ্র ভৌমিক",
           brideMother: "বিল্ল রানী ভৌমিক",
           brideBrother: "সৌরভ ভৌমিক",
-          shareEyebrow: "আপনিও থাকুন আমাদের আনন্দে",
-          shareTitle: "স্নেহ ও আশীর্বাদে",
-          shareCopy: "আপনার উপস্থিতি আমাদের এই শুভদিনকে আরও স্মরণীয় করে তুলবে। নিমন্ত্রণটি প্রিয়জনদের সঙ্গে ভাগ করে নিন।",
-          shareInvitation: "নিমন্ত্রণ শেয়ার করুন",
-          copyLink: "লিংক কপি করুন",
-          linkLabel: "নিমন্ত্রণের লিংক",
+          gratitudeEyebrow: "আপনিও থাকুন আমাদের আনন্দে",
+          gratitudeTitle: "স্নেহ ও আশীর্বাদে",
+          gratitudeCopy: "আপনার উপস্থিতি আমাদের এই শুভদিনকে আরও স্মরণীয় করে তুলবে। আমাদের আনন্দে আপনার উপস্থিতির জন্য অধীর অপেক্ষায় রইলাম।",
+          ogDescription: "সুদীপ মল্লিক ও মেঘা ভৌমিকের বিবাহ-অনুষ্ঠানে সপরিবারে আমন্ত্রিত।",
           previous: "পূর্ববর্তী",
           next: "পরবর্তী",
           footerBlessing: "সবার স্নেহ ও আশীর্বাদে হোক নতুন পথচলা",
           footerDate: "জানুয়ারি – ফেব্রুয়ারি · ২০২৭",
-          toastCopied: "নিমন্ত্রণের লিংক কপি হয়েছে।",
-          toastCopyManual: "লিংকটি নির্বাচন করা হয়েছে—কপি করে নিন।",
-          toastCopyFailed: "লিংক কপি করা যায়নি। অনুগ্রহ করে নিচের লিংকটি কপি করুন।",
           toastMusicError: "সঙ্গীত চালু করা যায়নি। আবার চেষ্টা করুন।",
           pageLabel: (page, total) => `পৃষ্ঠা ${toBengaliDigits(page)} / ${toBengaliDigits(total)}`,
           countdownAria: (label, days, hours, minutes, seconds) => `${label}। ${toBengaliDigits(days)} দিন ${toBengaliDigits(hours)} ঘণ্টা ${toBengaliDigits(minutes)} মিনিট ${toBengaliDigits(seconds)} সেকেন্ড বাকি।`
@@ -1829,7 +1791,7 @@
           navInvitation: "Invitation",
           navEvents: "Celebrations",
           navFamily: "Families",
-          navShare: "Share",
+          navGratitude: "With gratitude",
           playMusic: "Play the wedding music",
           pauseMusic: "Pause the wedding music",
           music: "Music",
@@ -1888,19 +1850,14 @@
           brideFather: "Babul Chandra Bhowmik",
           brideMother: "Billa Rani Bhowmik",
           brideBrother: "Sourav Bhowmik",
-          shareEyebrow: "Celebrate with us",
-          shareTitle: "With love and blessings",
-          shareCopy: "Your presence will make our special day even more memorable. Please share this invitation with the people you love.",
-          shareInvitation: "Share the invitation",
-          copyLink: "Copy invitation link",
-          linkLabel: "Invitation link",
+          gratitudeEyebrow: "Celebrate with us",
+          gratitudeTitle: "With love and blessings",
+          gratitudeCopy: "Your presence will make our special day even more memorable. We look forward to celebrating with you.",
+          ogDescription: "You are warmly invited to celebrate the wedding of Sudip Mallik and Megha Bhowmik.",
           previous: "Previous",
           next: "Next",
           footerBlessing: "May this new journey be blessed with love and joy",
           footerDate: "January – February · 2027",
-          toastCopied: "Invitation link copied.",
-          toastCopyManual: "The link is selected—copy it to share.",
-          toastCopyFailed: "Could not copy the link. Please copy the link below.",
           toastMusicError: "Music could not start. Please try again.",
           pageLabel: (page, total) => `Page ${page} of ${total}`,
           countdownAria: (label, days, hours, minutes, seconds) => `${label}. ${days} days ${hours} hours ${minutes} minutes ${seconds} seconds remaining.`
@@ -1946,7 +1903,7 @@
         }
       ];
 
-      const pageIds = ["home", "invitation", "events", "family", "share"];
+      const pageIds = ["home", "invitation", "events", "family", "gratitude"];
       const gate = document.querySelector("#invitation-gate");
       const app = document.querySelector("#invitation-shell");
       const openButton = document.querySelector("#open-invitation");
@@ -2085,7 +2042,7 @@
           ? "You are warmly invited to celebrate the wedding of Sudip Mallik and Megha Bhowmik."
           : "সুদীপ ও মেঘার শুভ বিবাহে আপনাকে সাদর আমন্ত্রণ।";
         document.querySelector('meta[property="og:title"]').content = document.title;
-        document.querySelector('meta[property="og:description"]').content = content.shareCopy;
+        document.querySelector('meta[property="og:description"]').content = content.ogDescription;
 
         document.querySelectorAll("[data-i18n]").forEach((element) => {
           const translation = content[element.dataset.i18n];
@@ -2109,7 +2066,6 @@
           const page = button.dataset.go;
           button.setAttribute("aria-current", page === currentPage ? "page" : "false");
         });
-        document.querySelector("#share-url").value = window.location.href.split("#")[0];
         updateCountdown();
         updatePageControls();
       }
@@ -2195,49 +2151,6 @@
           if (error.name !== "NotAllowedError") console.error("Could not play the wedding music.", error);
           showToast("toastMusicError");
         }
-      }
-
-      async function copyInvitationLink() {
-        const linkInput = document.querySelector("#share-url");
-        const url = window.location.href.split("#")[0];
-        linkInput.value = url;
-        try {
-          if (navigator.clipboard && window.isSecureContext) {
-            await navigator.clipboard.writeText(url);
-          } else {
-            linkInput.focus();
-            linkInput.select();
-            const copied = document.execCommand("copy");
-            if (!copied) {
-              showToast("toastCopyFailed");
-              return;
-            }
-          }
-          showToast("toastCopied");
-        } catch (error) {
-          linkInput.focus();
-          linkInput.select();
-          console.error("Could not copy the invitation link.", error);
-          showToast("toastCopyManual");
-        }
-      }
-
-      async function shareInvitation() {
-        const url = window.location.href.split("#")[0];
-        if (navigator.share) {
-          try {
-            await navigator.share({
-              title: document.title,
-              text: translations[language].shareCopy,
-              url
-            });
-            return;
-          } catch (error) {
-            if (error.name === "AbortError") return;
-            console.error("Native sharing failed; falling back to copy.", error);
-          }
-        }
-        await copyInvitationLink();
       }
 
       function openInvitation() {
@@ -2372,8 +2285,6 @@
       });
       audio.addEventListener("play", updateMusicState);
       audio.addEventListener("pause", updateMusicState);
-      document.querySelector("#share-button").addEventListener("click", () => void shareInvitation());
-      document.querySelector("#copy-button").addEventListener("click", () => void copyInvitationLink());
       document.querySelectorAll(".interactive-card").forEach(addCardTilt);
       const pageStage = document.querySelector("#page-stage");
       pageStage.addEventListener("pointerdown", (event) => {
