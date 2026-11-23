@@ -318,6 +318,11 @@
       width: min(80vw, 340px);
       height: 218px;
       margin-top: 20px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
       filter: drop-shadow(0 26px 30px rgba(0, 0, 0, .35));
       transform-style: preserve-3d;
       transition: transform .8s cubic-bezier(.2,.8,.2,1);
@@ -1354,7 +1359,7 @@
         <button class="language-toggle gate-language" type="button" data-action="language" data-i18n-aria="switchLanguage">
           <span lang="bn">বাংলা</span><span aria-hidden="true"> / </span><span lang="en">English</span>
         </button>
-        <div class="envelope-stage" aria-hidden="true">
+        <div class="envelope-stage">
           <svg class="gate-mandala" viewBox="0 0 300 300" fill="none">
             <g class="mandala-spin" stroke="currentColor" stroke-width="1.25">
               <circle cx="150" cy="150" r="115"/>
@@ -1371,7 +1376,7 @@
             <path class="diya-flame" d="M30 7c12 13 4 21 0 23C17 23 24 13 30 7Z" fill="#e98042" stroke="#f1d59d" stroke-width="2"/>
             <path d="M15 47h30" stroke="#d4a75d" stroke-width="2" stroke-linecap="round"/>
           </svg>
-          <div class="envelope">
+          <button class="envelope" id="envelope" type="button" data-i18n-aria="openEnvelope">
             <div class="envelope-letter">
               <span data-i18n="envelopeNames">সুদীপ &amp; মেঘা</span>
               <small data-i18n="weddingInvitation">শুভ বিবাহের নিমন্ত্রণ</small>
@@ -1379,7 +1384,7 @@
             <div class="envelope-pocket"></div>
             <div class="envelope-flap"></div>
             <div class="wax-seal"><span data-i18n="sealText">শুভ</span></div>
-          </div>
+          </button>
           <svg class="gate-diya right" viewBox="0 0 60 60" fill="none">
             <path d="M8 39c6 10 38 10 44 0H8Z" fill="#d4a75d" stroke="#f1d59d" stroke-width="2"/>
             <path class="diya-flame" d="M30 7c12 13 4 21 0 23C17 23 24 13 30 7Z" fill="#e98042" stroke="#f1d59d" stroke-width="2"/>
@@ -1695,6 +1700,7 @@
           envelopeNames: "সুদীপ & মেঘা",
           weddingInvitation: "শুভ বিবাহের নিমন্ত্রণ",
           openInvitation: "খাম খুলে নিমন্ত্রণ দেখুন",
+          openEnvelope: "খামে ট্যাপ করে নিমন্ত্রণ খুলুন",
           gateNote: "নিমন্ত্রণ খুললেই মৃদু সুরে বাজবে বিবাহের গান",
           groomName: "সুদীপ মল্লিক",
           brideName: "মেঘা ভৌমিক",
@@ -1784,6 +1790,7 @@
           envelopeNames: "Sudip & Megha",
           weddingInvitation: "Wedding Invitation",
           openInvitation: "Open the invitation",
+          openEnvelope: "Tap the envelope to open the invitation",
           gateNote: "A gentle wedding melody begins as you open the invitation",
           groomName: "Sudip Mallik",
           brideName: "Megha Bhowmik",
@@ -1907,6 +1914,7 @@
       const gate = document.querySelector("#invitation-gate");
       const app = document.querySelector("#invitation-shell");
       const openButton = document.querySelector("#open-invitation");
+      const envelope = document.querySelector("#envelope");
       const audio = document.querySelector("#wedding-audio");
       const musicButton = document.querySelector("#music-toggle");
       const toast = document.querySelector("#toast");
@@ -2259,6 +2267,7 @@
       }
 
       openButton.addEventListener("click", openInvitation);
+      envelope.addEventListener("click", openInvitation);
       document.querySelectorAll("[data-action='language']").forEach((button) => {
         button.addEventListener("click", () => setLanguage(language === "bn" ? "en" : "bn"));
       });
